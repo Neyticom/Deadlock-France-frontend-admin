@@ -5,17 +5,15 @@ import Loader from './common/Loader';
 import PageTitle from './components/PageTitle';
 import SignIn from './pages/Authentication/SignIn';
 import SignUp from './pages/Authentication/SignUp';
-import Calendar from './pages/Calendar';
 import Chart from './pages/Chart';
 import ECommerce from './pages/Dashboard/ECommerce';
-import FormElements from './pages/Form/FormElements';
-import FormLayout from './pages/Form/FormLayout';
-import Profile from './pages/Profile';
 import Settings from './pages/Settings';
 import Tables from './pages/Tables';
 import Alerts from './pages/UiElements/Alerts';
 import Buttons from './pages/UiElements/Buttons';
 import DefaultLayout from './layout/DefaultLayout';
+import UserManagement from './pages/UserManagement';
+import PatchnotesManagement from './pages/PatchnotesManagement';
 
 function App() {
   const [loading, setLoading] = useState<boolean>(true);
@@ -38,53 +36,26 @@ function App() {
           index
           element={
             <>
-              <PageTitle title="eCommerce Dashboard | Deadlock France Admin Dashboard" />
+              <PageTitle title="Dashboard | Deadlock France Admin Dashboard" />
               <ECommerce />
             </>
           }
         />
         <Route
-          path="/calendar"
+          path="/admin/userManagement"
           element={
             <>
-              <PageTitle title="Calendar | Deadlock France Admin Dashboard" />
-              <Calendar />
+              <PageTitle title="Gestion des utilisateurs | Deadlock France Admin Dashboard" />
+              <UserManagement />
             </>
           }
         />
         <Route
-          path="/profile"
+          path="/admin/patchnotesManager"
           element={
             <>
-              <PageTitle title="Profile | Deadlock France Admin Dashboard" />
-              <Profile />
-            </>
-          }
-        />
-        <Route
-          path="/forms/form-elements"
-          element={
-            <>
-              <PageTitle title="Form Elements | Deadlock France Admin Dashboard" />
-              <FormElements />
-            </>
-          }
-        />
-        <Route
-          path="/forms/form-layout"
-          element={
-            <>
-              <PageTitle title="Form Layout | Deadlock France Admin Dashboard" />
-              <FormLayout />
-            </>
-          }
-        />
-        <Route
-          path="/tables"
-          element={
-            <>
-              <PageTitle title="Tables | Deadlock France Admin Dashboard" />
-              <Tables />
+              <PageTitle title="Gestion des Patchnotes | Deadlock France Admin Dashboard" />
+              <PatchnotesManagement />
             </>
           }
         />
