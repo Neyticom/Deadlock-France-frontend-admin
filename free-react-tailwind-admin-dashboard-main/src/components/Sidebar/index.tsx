@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
-import SidebarLinkGroup from './SidebarLinkGroup';
-import Logo from '../../images/logo/logo.svg';
+import LogoIcon from '../../images/logo/logo-icon.png';
 
 interface SidebarProps {
   sidebarOpen: boolean;
@@ -64,9 +63,10 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
     >
       {/* <!-- SIDEBAR HEADER --> */}
       <div className="flex items-center justify-between gap-2 px-6 py-5.5 lg:py-6.5">
-        <NavLink to="/">
-          <img src={Logo} alt="Logo" />
-        </NavLink>
+      <NavLink className="flex items-center gap-2" to="/">
+  <img className="h-8 w-8" src={LogoIcon} alt="Logo" />
+  <p className="text-lg font-semibold text-white">Deadlock France</p>
+</NavLink>
 
         <button
           ref={trigger}
@@ -195,15 +195,6 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                   Gestion des Patchnotes
                 </NavLink>
               </li>
-              {/* <!-- Menu Item Profile --> */}
-
-              {/* <!-- Menu Item Forms --> */}
-              
-              {/* <!-- Menu Item Forms --> */}
-
-              {/* <!-- Menu Item Tables --> */}
-              
-              {/* <!-- Menu Item Tables --> */}
 
               {/* <!-- Menu Item Settings --> */}
               <li>

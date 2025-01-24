@@ -1,15 +1,19 @@
 import Breadcrumb from '../components/Breadcrumbs/Breadcrumb';
-import TableOne from '../components/Tables/TableOne';
-import CoverOne from '../images/cover/cover-01.png';
-import userSix from '../images/user/user-06.png';
-import { Link } from 'react-router-dom';
+import TableTwo from '../components/Tables/TableTwo';
+
 
 const PatchnotesManagement = () => {
   return (
     <>
       <Breadcrumb pageName="Gestion des Patchnotes" />
+      <div className="mb-4 flex justify-start">
+        <button className="px-4 py-2 bg-blue-500 text-white font-medium rounded-md hover:bg-blue-600" 
+                onClick={() => console.log('Créer un patchnote')}>
+                Ajouter un Patchnote
+        </button>
+      </div>
       <div>
-        <TableOne/>
+        <TableTwo/>
       </div>
     </>
   );
