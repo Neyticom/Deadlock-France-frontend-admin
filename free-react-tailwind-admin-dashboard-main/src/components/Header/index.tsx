@@ -2,8 +2,9 @@ import { Link } from 'react-router-dom';
 import DropdownMessage from './DropdownMessage';
 import DropdownNotification from './DropdownNotification';
 import DropdownUser from './DropdownUser';
-import LogoIcon from '../../images/logo/logo-icon.svg';
+import LogoIcon from '../../images/logo/logo-icon-test.svg';
 import DarkModeSwitcher from './DarkModeSwitcher';
+import React from 'react';
 
 const Header = (props: {
   sidebarOpen: string | boolean | undefined;
@@ -90,7 +91,7 @@ const Header = (props: {
 
               <input
                 type="text"
-                placeholder="Type to search..."
+                placeholder="Rechercher"
                 className="w-full bg-transparent pl-9 pr-4 text-black focus:outline-none dark:text-white xl:w-125"
               />
             </div>
@@ -104,12 +105,10 @@ const Header = (props: {
             {/* <!-- Dark Mode Toggler --> */}
 
             {/* <!-- Notification Menu Area --> */}
-            <DropdownNotification />
+            {/* <DropdownNotification /> */}
             {/* <!-- Notification Menu Area --> */}
 
-            {/* <!-- Chat Notification Area --> */}
-            <DropdownMessage />
-            {/* <!-- Chat Notification Area --> */}
+          
           </ul>
 
           {/* <!-- User Area --> */}

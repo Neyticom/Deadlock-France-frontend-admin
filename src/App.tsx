@@ -1,7 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 import './App.scss';
 import LoginPage from '/home/student/Deadlock-France-frontend-admin/src/views/LoginPage.tsx';
-import AdminDashboard from "./views/AdminDashboard";
+
 
 
 const App = () => {
@@ -12,7 +12,7 @@ const App = () => {
         <Route path="/admin" element={<LoginPage />} />
 
         {/* Main Admin Dashboard */}
-        <Route path="/admin/dashboard" element={<AdminDashboard />} />
+        {/* <Route path="/admin/dashboard" element={<AdminDashboard />} /> */}
       </Routes>
     </div>
   );

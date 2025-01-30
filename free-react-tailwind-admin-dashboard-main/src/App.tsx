@@ -1,14 +1,13 @@
 import { useEffect, useState } from 'react';
 import { Route, Routes, useLocation } from 'react-router-dom';
-
+import React from 'react';
 import Loader from './common/Loader';
 import PageTitle from './components/PageTitle';
 import SignIn from './pages/Authentication/SignIn';
 import SignUp from './pages/Authentication/SignUp';
 import Chart from './pages/Chart';
-import ECommerce from './pages/Dashboard/ECommerce';
+import AdminDashboard from './pages/Dashboard/AdminDashboard';
 import Settings from './pages/Settings';
-import Tables from './pages/Tables';
 import Alerts from './pages/UiElements/Alerts';
 import Buttons from './pages/UiElements/Buttons';
 import DefaultLayout from './layout/DefaultLayout';
@@ -37,7 +36,7 @@ function App() {
           element={
             <>
               <PageTitle title="Dashboard | Deadlock France Admin Dashboard" />
-              <ECommerce />
+              <AdminDashboard />
             </>
           }
         />
@@ -45,7 +44,7 @@ function App() {
           path="/admin/userManagement"
           element={
             <>
-              <PageTitle title="Gestion des utilisateurs | Deadlock France Admin Dashboard" />
+              <PageTitle title="Gestion des utilisateurs | Deadlock France User Management" />
               <UserManagement />
             </>
           }
@@ -54,7 +53,7 @@ function App() {
           path="/admin/patchnotesManager"
           element={
             <>
-              <PageTitle title="Gestion des Patchnotes | Deadlock France Admin Dashboard" />
+              <PageTitle title="Gestion des Patchnotes | Deadlock France Patchnote Management" />
               <PatchnotesManagement />
             </>
           }
@@ -63,7 +62,7 @@ function App() {
           path="/settings"
           element={
             <>
-              <PageTitle title="Settings | Deadlock France Admin Dashboard" />
+              <PageTitle title="Settings | Deadlock France Admin Settings" />
               <Settings />
             </>
           }
