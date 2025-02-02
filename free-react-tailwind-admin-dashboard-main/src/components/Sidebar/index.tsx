@@ -1,7 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 import SidebarLinkGroup from './SidebarLinkGroup';
-import Logo from '../../images/logo/logo-icon-test.svg';
+import LogoIcon from '../../images/logo/logo-icon.svg'
+
 
 interface SidebarProps {
   sidebarOpen: boolean;
@@ -64,8 +65,8 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
     >
       {/* <!-- SIDEBAR HEADER --> */}
       <div className="flex items-center justify-between gap-2 px-6 py-5.5 lg:py-6.5">
-        <NavLink className="flex items-center gap-2" to="/">
-          <img src={Logo} alt="Logo" />
+        <NavLink className="flex items-center gap-2" to="/admin">
+          <img src={LogoIcon} alt="Logo" />
           <span className='font-medium text-bodydark1 duration-300 ease-in-out'>Deadlock France</span>
         </NavLink>
 
@@ -105,7 +106,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
             <ul className="mb-6 flex flex-col gap-1.5">
                <li>
             <NavLink
-              to="/"
+              to="/admin"
               className={({ isActive }) =>
                 'group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ' +
                 (isActive && 'bg-graydark dark:bg-meta-4')
