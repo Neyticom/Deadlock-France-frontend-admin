@@ -1,35 +1,113 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useEffect, useState } from 'react';
+import { Route, Routes, useLocation } from 'react-router-dom';
+import React from 'react';
+import Loader from './common/Loader';
+import PageTitle from './components/PageTitle';
+import LoginPage from './pages/Authentication/LoginPage';
+import SignUp from './pages/Authentication/SignUp';
+import Chart from './pages/Chart';
+import AdminDashboard from './pages/Dashboard/AdminDashboard';
+import Settings from './pages/Settings';
+import Alerts from './pages/UiElements/Alerts';
+import Buttons from './pages/UiElements/Buttons';
+import DefaultLayout from './layout/DefaultLayout';
+import UserManagement from './pages/UserManagement';
+import PatchnotesManagement from './pages/PatchnotesManagement';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [loading, setLoading] = useState<boolean>(true);
+  const { pathname } = useLocation();
 
-  return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  useEffect(() => {
+    setTimeout(() => setLoading(false), 1000);
+  }, []);
+
+  return loading ? (
+    <Loader />
+  ) : (
+    <DefaultLayout>
+      <Routes>
+
+      <Route
+          path="/auth/signin"
+          element={
+            <>
+              <PageTitle title="Signin | Deadlock France Admin Dashboard" />
+              <LoginPage />
+            </>
+          }/>
+        <Route
+          path="/auth/signup"
+          element={
+            <>
+              <PageTitle title="Signup | Deadlock France Admin Dashboard" />
+              <SignUp />
+            </>
+          }/>
+
+        <Route
+          path='/admin'
+          element={
+            <>
+              <PageTitle title="Dashboard | Deadlock France Admin Dashboard" />
+              <AdminDashboard />
+            </>
+          }/>
+        <Route
+          path="/admin/userManagement"
+          element={
+            <>
+              <PageTitle title="Gestion des utilisateurs | Deadlock France User Management" />
+              <UserManagement />
+            </>
+          }/>
+        <Route
+          path="/admin/patchnotesManager"
+          element={
+            <>
+              <PageTitle title="Gestion des Patchnotes | Deadlock France Patchnote Management" />
+              <PatchnotesManagement />
+            </>
+          }/>
+        <Route
+          path="/settings"
+          element={
+            <>
+              <PageTitle title="Settings | Deadlock France Admin Settings" />
+              <Settings />
+            </>
+          }/>
+        <Route
+          path="/chart"
+          element={
+            <>
+              <PageTitle title="Basic Chart | Deadlock France Admin Dashboard" />
+              <Chart />
+            </>
+          }/>
+        <Route
+          path="/ui/alerts"
+          element={
+            <>
+              <PageTitle title="Alerts | Deadlock France Admin Dashboard" />
+              <Alerts />
+            </>
+          }/>
+        <Route
+          path="/ui/buttons"
+          element={
+            <>
+              <PageTitle title="Buttons | Deadlock France Admin Dashboard" />
+              <Buttons />
+            </>
+          }/>
+      </Routes>
+    </DefaultLayout>
+  );
 }
 
-export default App
+export default App;
