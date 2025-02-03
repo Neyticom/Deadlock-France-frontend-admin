@@ -4,17 +4,23 @@ import ClickOutside from '../ClickOutside';
 import UserOne from '../../images/user/user-01.png';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../../context/authContext';
+import { logout } from '../../api/authApi';
 
 const DropdownUser = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const { setAuthenticated } = useAuth();
   const navigate = useNavigate();
 
-  const handleLogout = () => {
-    // Supprimer le jeton ou les informations d'authentification
-    localStorage.removeItem('authToken');
-    
-    // Rediriger l'utilisateur vers la page de connexion
-    navigate('/auth/signin');
+  const handleLogout = async () => {
+    try {
+      await logout();
+      setAuthenticated(null);
+      // Rediriger l'utilisateur vers la page de connexion
+      navigate('/login');
+    } catch (error) {
+      console.log(error.message);
+    }
   };
 
 
