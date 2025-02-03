@@ -1,10 +1,12 @@
 import Breadcrumb from '../components/Breadcrumbs/Breadcrumb';
+import PageTitle from '../components/PageTitle';
 import UserTable from '../components/Tables/UserTable';
 import React from 'react';
 
 const UserManagement = () => {
   return (
     <>
+      <PageTitle title="Deadlock France - Espace Équipe" />
       <Breadcrumb pageName="Gestion des Utilisateurs" />
       <div className="mb-4 flex justify-start">
         <button

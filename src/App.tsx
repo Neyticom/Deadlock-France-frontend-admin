@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Route, Routes, useLocation } from 'react-router-dom';
+import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
 import React from 'react';
 import Loader from './common/Loader';
 import PageTitle from './components/PageTitle';
@@ -13,6 +13,9 @@ import Buttons from './pages/UiElements/Buttons';
 import DefaultLayout from './layout/DefaultLayout';
 import UserManagement from './pages/UserManagement';
 import PatchnotesManagement from './pages/PatchnotesManagement';
+import AuthRedirect from './components/Auth/AuthRedirect';
+import ProtectedRoute from './components/Auth/ProtectedRoute';
+import { AuthProvider } from './context/authContext';
 
 function App() {
   const [loading, setLoading] = useState<boolean>(true);
@@ -29,84 +32,25 @@ function App() {
   return loading ? (
     <Loader />
   ) : (
-    <DefaultLayout>
+    <AuthProvider>
       <Routes>
+        {/* Login route - User is redirected to dashboard if already logged in */}
+        <Route element={<AuthRedirect />}>
+            <Route path="/login" element={<LoginPage />} />
+        </Route>
 
-      <Route
-          path="/auth/signin"
-          element={
-            <>
-              <PageTitle title="Signin | Deadlock France Admin Dashboard" />
-              <LoginPage />
-            </>
-          }/>
-        <Route
-          path="/auth/signup"
-          element={
-            <>
-              <PageTitle title="Signup | Deadlock France Admin Dashboard" />
-              <SignUp />
-            </>
-          }/>
+        {/* Protected routes - User has to be logged in*/}
+        <Route element={<ProtectedRoute />}>
+          <Route element={<DefaultLayout />}>
+            <Route path="/dashboard" element={<AdminDashboard />} />
+            <Route path="/dashboard/users" element={<UserManagement />} />
+          </Route>
+        </Route>
 
-        <Route
-          path='/admin'
-          element={
-            <>
-              <PageTitle title="Dashboard | Deadlock France Admin Dashboard" />
-              <AdminDashboard />
-            </>
-          }/>
-        <Route
-          path="/admin/userManagement"
-          element={
-            <>
-              <PageTitle title="Gestion des utilisateurs | Deadlock France User Management" />
-              <UserManagement />
-            </>
-          }/>
-        <Route
-          path="/admin/patchnotesManager"
-          element={
-            <>
-              <PageTitle title="Gestion des Patchnotes | Deadlock France Patchnote Management" />
-              <PatchnotesManagement />
-            </>
-          }/>
-        <Route
-          path="/settings"
-          element={
-            <>
-              <PageTitle title="Settings | Deadlock France Admin Settings" />
-              <Settings />
-            </>
-          }/>
-        <Route
-          path="/chart"
-          element={
-            <>
-              <PageTitle title="Basic Chart | Deadlock France Admin Dashboard" />
-              <Chart />
-            </>
-          }/>
-        <Route
-          path="/ui/alerts"
-          element={
-            <>
-              <PageTitle title="Alerts | Deadlock France Admin Dashboard" />
-              <Alerts />
-            </>
-          }/>
-        <Route
-          path="/ui/buttons"
-          element={
-            <>
-              <PageTitle title="Buttons | Deadlock France Admin Dashboard" />
-              <Buttons />
-            </>
-          }/>
+        {/* Prevent wrong url usage */}
+        <Route path="*" element={<Navigate to="/login" replace />} />
       </Routes>
-    </DefaultLayout>
+    </AuthProvider>
   );
 }
 
